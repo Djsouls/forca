@@ -2,8 +2,6 @@
 
 #define MAX_THREADS 4
 
-bool quit = false;
-
 void main()
 {
     struct sockaddr_in server_address;
