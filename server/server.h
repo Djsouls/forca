@@ -1,6 +1,24 @@
 #ifndef _SERVER_H
 #define _SERVER_H
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+#include <string.h>
+
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <unistd.h>
+
+#include <pthread.h>
+
+#include "server.h"
+#include "hangman.h"
+
+#include "../util.h"
+
+
 typedef struct server_thread_context {
     int server_fd;
     struct sockaddr_in server_address;
