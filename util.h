@@ -9,7 +9,8 @@
 
 #define BUFFER_SIZE 1024
 
-#define WELCOME_MESSAGE ""
+#define MAX_WORD_SIZE 32
+#define N_LIVES 5
 
 void error(char*);
 int index_of(char*, char, int);
