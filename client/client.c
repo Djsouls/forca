@@ -44,7 +44,7 @@ void play_hangman(int server_fd) {
 
     read(server_fd, server_buffer, BUFFER_SIZE);
 
-    //printf("Tamanho da palavra: %i\n", (uint8_t)server_buffer);
+    printf("Tamanho da palavra: %i\n", server_buffer[START_PAYLOAD_INDEX]);
 
     char letter = 'a';
 

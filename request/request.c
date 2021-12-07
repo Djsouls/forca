@@ -37,5 +37,5 @@ char receive_char(int sock) {
         printf("%i: %i\n", i, msg[i]);
     }
 
-    return msg[3];
+    return msg[START_PAYLOAD_INDEX];
 }
