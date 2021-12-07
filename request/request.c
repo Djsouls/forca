@@ -37,6 +37,14 @@ void send_message(int sock, char* msg) {
     send(sock, msg, msg_size, 0);
 }
 
+int get_word_size(int server_fd) {
+    char buffer[BUFFER_SIZE] = {0};
+
+    read(server_fd, buffer, BUFFER_SIZE);
+
+    return buffer[START_PAYLOAD_INDEX];
+}
+
 char receive_char(int sock) {
     char msg[MSG_MAX_SIZE];
 
