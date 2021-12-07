@@ -1,6 +1,7 @@
 #ifndef _PROTOCOL_H
 #define _PROTOCOL_H
 
+#include <stdio.h>
 #include <stdint.h>
 
 #define MSG_MAX_SIZE 128
@@ -28,7 +29,6 @@ void make_message(char*, message);
 /* Review */
 void make_send_word_size_message(char*, int);
 void make_send_letter_message(char*, char);
-
 void make_send_hits_message(char*, uint8_t*, int);
 /**/
 

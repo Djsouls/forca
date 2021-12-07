@@ -65,7 +65,7 @@ void play_hangman(int server_fd) {
 
     char letter;
     while(lives > 0) {
-        printf("Letra ");
+        printf("\nLetra ");
         scanf(" %c", &letter);
 
         send_letter(server_fd, letter);

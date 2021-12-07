@@ -17,13 +17,10 @@ void play_hangman(int client_fd)
 
     while(lives > 0) {
         if(word_completed(current_word, word_size)) {
-            printf("word completed!\n");
             break;
         }
 
         char letter = receive_char(client_fd);
-
-        printf("Letra recebida: %i\n", letter);
 
         uint8_t hits[MAX_WORD_SIZE];
         int hit_count = get_hits(word, letter, hits);
@@ -32,7 +29,6 @@ void play_hangman(int client_fd)
 
         if(hit_count == 0) {
             lives--;
-            printf("Lives %i\n", lives);
         }
 
         update_word(current_word, letter, hits, hit_count);
