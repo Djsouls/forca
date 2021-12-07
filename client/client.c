@@ -43,11 +43,11 @@ void play_hangman(int server_fd) {
 
     read(server_fd, server_buffer, BUFFER_SIZE);
 
-    printf("Tamanho da palavra: %s\n", server_buffer);
+    //printf("Tamanho da palavra: %i\n", (uint8_t)server_buffer);
 
-    char* buffer = "a";
+    char letter = 'a';
 
-    send(server_fd, buffer, 1, 0);
+    send_letter(server_fd, letter);
 }
 
 void config_addr(struct sockaddr_in* addr)

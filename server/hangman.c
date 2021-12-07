@@ -3,16 +3,14 @@
 void play_hangman(int client_fd)
 {
     char* word = choose_word();
-    char* word_size;
 
-    sprintf(word_size, "%i", strlen(word));
+    printf("Playing hangman!\n");
+    send_word_size(client_fd, strlen(word));
 
-    send(client_fd, word_size, strlen(word), 0);
+    char letter = receive_char(client_fd);
 
-    char* buffer;
+    printf("Letra recebida: %i\n", letter);
 
-    read(client_fd, buffer, BUFFER_SIZE);
-    printf("Recebido do cliente %s\n", buffer);
 }
 
 char* choose_word() {
@@ -27,4 +25,3 @@ char* choose_word() {
 
     return words[rand() % n_words];
 }
-

@@ -1,7 +1,7 @@
 TARGET=server
 CC=gcc
 
-OBJS=server.o hangman.o
+OBJS=server.o hangman.o request.o protocol.o
 
 LD=gcc
 LDLFLAGS=-lpthread
@@ -17,5 +17,11 @@ server.o: server.c hangman.c
 hangman.o: hangman.c
 	$(CC) -c hangman.c -o hangman.o
 
+request.o: ../request/request.c 
+	$(CC) -c ../request/request.c -o request.o
+
+protocol.o: ../request/protocol/protocol.c
+	$(CC) -c ../request/protocol/protocol.c -o protocol.o
+ 
 clean:
 	rm -f *.o

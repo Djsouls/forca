@@ -3,15 +3,16 @@
 
 #include <stdint.h>
 
-#define MSG_TYPE_SIZE 1 // The number of bytes to represent the message type
-#define MSG_PAYLOAD_SIZE // The number of bytes to represent the payload size
+#define MSG_MAX_SIZE 128
 
 #define MSG_TYPE_INDEX 0
 #define MSG_PAYLOAD_SIZE_INDEX1 1
 #define MSG_PAYLOAD_SIZE_INDEX2 2
 #define START_PAYLOAD_INDEX 3
 
-#define HELLO_MESSAGE 0
+#define HELLO_MSG 0
+#define SEND_WORD_SIZE 1
+#define SEND_LETTER 2
 
 typedef struct message {
     uint8_t msg_type;
