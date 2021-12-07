@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <string.h>
 
+#include "client.h"
 #include "../util.h"
 
 #define HOST "127.0.0.1"

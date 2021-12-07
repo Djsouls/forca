@@ -24,6 +24,11 @@ void make_hello_message(char*);
 
 void make_message(char*, message);
 
+/* Review */
+void make_send_word_size_message(char*, int);
+void make_send_letter_message(char*, char);
+/**/
+
 void add_msg_type(char*, uint8_t);
 void add_msg_payload_size(char*, uint16_t);
 void add_msg_payload(char*, char*, uint16_t);

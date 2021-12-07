@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <string.h>
 
+#include "request.h"
 #include "../util.h"
 
 #define HOST "127.0.0.1"
