@@ -2,8 +2,10 @@
 #define _HANGMAN_H
 
 #include <stdio.h>
-#include <string.h>
+#include <stdbool.h>
 #include <stdlib.h>
+
+#include <string.h>
 
 #include <unistd.h>
 
@@ -23,6 +25,11 @@ void play_hangman(int);
 
 char* choose_word();
 
+int get_hits(char*, char, uint8_t*);
 int index_of(char*, char, int);
+
+bool word_completed(char*, int);
+void update_word(char*, char, uint8_t*, int);
+void init_word(char*, int);
 
 #endif

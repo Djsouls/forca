@@ -93,11 +93,22 @@ void play_hangman(int server_fd) {
     }
 }
 
+/**
+ * Initiante the word with "_" for checking.
+ * Given a word with size 7, the "word" array will be:
+ *
+ * word = "_______"
+*/
+
 void init_word(char* word, int word_size) {
     for(int i = 0; i < word_size; i++) {
         word[i] = '_';
     }
 }
+
+/**
+ * Prints the actual word state.
+*/
 
 void show_word(char* word, int word_size) {
     printf("Word: ");
@@ -107,12 +118,29 @@ void show_word(char* word, int word_size) {
     printf("\n");
 }
 
+/**
+ * Update the word state with the hit letter
+ *
+ * For example:
+ *     letter = a
+ *     hits = [1, 3, 5]
+ *     hit_count = 3
+ *     word = "______"
+ *
+ * The word state will be:
+ *     word = "_a_a_a_"
+*/
+
 void update_word(char* word, char letter, int* hits, int hit_count) {
     for(int i = 0; i < hit_count; i++) {
         word[hits[i]] = letter;
     }
 }
 
+/**
+ * Checks if a word is completed. A word is completede when there's
+ * no '_' left in it.
+*/
 bool word_completed(char* word, int word_size) {
     for(int i = 0; i < word_size; i++) {
         if(word[i] == '_') {
