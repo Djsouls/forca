@@ -43,17 +43,20 @@ void* create_server(void* thread_context) {
     int client_fd;
     int addr_len = sizeof(context->server_address);
 
-    client_fd = accept(
-        context->server_fd, 
-        (struct sockaddr *) &context->server_address,
-        (socklen_t *) &addr_len
-    );
+    while(true) {
+        client_fd = accept(
+            context->server_fd, 
+            (struct sockaddr *) &context->server_address,
+            (socklen_t *) &addr_len
+        );
 
-    if(client_fd < 0) {
-        error("Deu ruim na conexão");
+        if(client_fd < 0) {
+            error("Deu ruim na conexão");
+        }
+
+        play_hangman(client_fd);
+        printf("Exited client!\n");
     }
-
-    play_hangman(client_fd);
 }
 
 int create_socket()

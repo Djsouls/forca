@@ -15,6 +15,8 @@ void send_message(int, char*);
 void send_letter(int, char);
 void send_hit(int, int[], int);
 
+void send_hits(int, uint8_t*, int);
+
 char receive_char(int);
 int receive_hits(int, int*);
 
