@@ -28,14 +28,14 @@ void play_hangman(int client_fd)
         uint8_t hits[MAX_WORD_SIZE];
         int hit_count = get_hits(word, letter, hits);
 
-        update_word(current_word, letter, hits, hit_count);
-
         send_hits(client_fd, hits, hit_count);
 
         if(hit_count == 0) {
             lives--;
             printf("Lives %i\n", lives);
         }
+
+        update_word(current_word, letter, hits, hit_count);
     }
 }
 

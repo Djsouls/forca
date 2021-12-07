@@ -46,33 +46,15 @@ void make_send_letter_message(char* msg_buffer, char letter) {
 
 void make_send_hits_message(char* msg_buffer, uint8_t hits[], int hit_count) {
     char payload[MSG_MAX_SIZE];
-    int payload_size = 0;
 
     /* Populates the payload in the format described above */
-    int payload_index = 0;
     for(int i = 0; i < hit_count; i++) {
-        payload[payload_index++] = hits[i];
-
-        /* Last iteration */
-        if(i == hit_count - 1) {
-            break;
-        }
-
-        payload[payload_index++] = ',';
+        payload[i] = hits[i];
     }
-
-    payload_size = 2 * hit_count - 1;
-    if(hit_count == 0) {
-        payload_size = 0;
-    }
-
-    // for(int i = 0; i < payload_index; i++) {
-    //     printf("payload: %i\n", payload[i]);
-    // }
 
     message msg = {
         .msg_type = SEND_HITS,
-        .payload_size = payload_size,
+        .payload_size = hit_count,
         .payload = payload
     };
 
@@ -123,4 +105,13 @@ int get_payload_size(char* msg) {
     );
 
     return size;
+}
+
+void print_payload(char* msg) {
+    int payload_size = get_payload_size(msg);
+
+    printf("Printing payload...\n");
+    for(int i = START_PAYLOAD_INDEX; i < START_PAYLOAD_INDEX + payload_size; i++) {
+        printf("%i\n", msg[i]);
+    }
 }

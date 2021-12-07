@@ -40,5 +40,6 @@ int get_message_size(char*);
 int get_headers_size(char*);
 int get_payload_size(char*);
 
+void print_payload(char*);
 
 #endif

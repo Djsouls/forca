@@ -55,7 +55,7 @@ int receive_hits(int sock, int* hits) {
     int hits_index = 0;
     int hit_count = 0;
 
-    for(int i = START_PAYLOAD_INDEX; i < START_PAYLOAD_INDEX + size; i = i+2) {
+    for(int i = START_PAYLOAD_INDEX; i < START_PAYLOAD_INDEX + size; i++) {
         hits[hits_index++] = msg[i];
         hit_count++;
     }
