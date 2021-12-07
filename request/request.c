@@ -42,10 +42,6 @@ char receive_char(int sock) {
 
     read(sock, msg, MSG_MAX_SIZE);
 
-    for(int i = 0; i < 5; i++) {
-        // printf("%i: %i\n", i, msg[i]);
-    }
-
     return msg[START_PAYLOAD_INDEX];
 }
 
@@ -54,20 +50,15 @@ int receive_hits(int sock, int* hits) {
 
     read(sock, msg, MSG_MAX_SIZE);
 
-    int size = (
-        msg[MSG_PAYLOAD_SIZE_HIGH] << 8 |
-        msg[MSG_PAYLOAD_SIZE_LOW]
-    );
+    int size = get_payload_size(msg);
 
     int hits_index = 0;
     int hit_count = 0;
 
     for(int i = START_PAYLOAD_INDEX; i < START_PAYLOAD_INDEX + size; i = i+2) {
-        // printf("%i: %i\n", i, msg[i]);
         hits[hits_index++] = msg[i];
         hit_count++;
     }
-
 
     return hit_count;
 }
