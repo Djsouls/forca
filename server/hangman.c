@@ -76,18 +76,6 @@ int get_hits(char* word, char letter, uint8_t* hits) {
     return hit_count;
 }
 
-int index_of(char* haystack, char needle, int start) {
-    int size = strlen(haystack);
-
-    for (int i = start; i < size; i++) {
-        if (haystack[i] == needle) {
-            return i;
-        }
-    }
-
-    return -1;
-}
-
 void init_word(char* word, int word_size) {
     for(int i = 0; i < word_size; i++) {
         word[i] = '_';

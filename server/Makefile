@@ -2,7 +2,7 @@ TARGET=server
 CC=gcc
 INC_DIR=../
 CFLAGS=-I$(INC_DIR)
-OBJS=server.o hangman.o request.o protocol.o
+OBJS=server.o hangman.o request.o protocol.o util.o
 
 LD=gcc
 LDLFLAGS=-lpthread
@@ -15,7 +15,10 @@ server: $(OBJS)
 server.o: server.c hangman.c
 	$(CC) -c server.c -o server.o $(CFLAGS)
 
-hangman.o: hangman.c
+util.o: ../util.c
+	$(CC) -c ../util.c -o util.o $(CFLAGS)
+
+hangman.o: hangman.c ../util.c
 	$(CC) -c hangman.c -o hangman.o $(CFLAGS)
 
 request.o: ../request/request.c 
