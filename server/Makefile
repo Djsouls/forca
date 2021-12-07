@@ -1,6 +1,7 @@
 TARGET=server
 CC=gcc
-
+INC_DIR=../
+CFLAGS=-I$(INC_DIR)
 OBJS=server.o hangman.o request.o protocol.o
 
 LD=gcc
@@ -12,16 +13,16 @@ server: $(OBJS)
 	$(LD) -o $(TARGET) $(OBJS) $(LDLFLAGS)
 
 server.o: server.c hangman.c
-	$(CC) -c server.c -o server.o
+	$(CC) -c server.c -o server.o $(CFLAGS)
 
 hangman.o: hangman.c
-	$(CC) -c hangman.c -o hangman.o
+	$(CC) -c hangman.c -o hangman.o $(CFLAGS)
 
 request.o: ../request/request.c 
-	$(CC) -c ../request/request.c -o request.o
+	$(CC) -c ../request/request.c -o request.o $(CFLAGS)
 
 protocol.o: ../request/protocol/protocol.c
-	$(CC) -c ../request/protocol/protocol.c -o protocol.o
+	$(CC) -c ../request/protocol/protocol.c -o protocol.o $(CFLAGS)
  
 clean:
 	rm -f *.o

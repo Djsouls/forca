@@ -46,9 +46,18 @@ void play_hangman(int server_fd) {
 
     printf("Tamanho da palavra: %i\n", server_buffer[START_PAYLOAD_INDEX]);
 
-    char letter = 'a';
+    char letter;
+
+    scanf("%c", &letter);
 
     send_letter(server_fd, letter);
+
+    int hits[10];
+    int hit_count = receive_hits(server_fd, hits);
+
+    for(int i = 0; i < hit_count; i++) {
+        printf("%d\n", hits[i]);
+    }
 }
 
 void config_addr(struct sockaddr_in* addr)

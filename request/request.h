@@ -13,7 +13,9 @@ void send_word_size(int, int);
 void send_message(int, char*);
 
 void send_letter(int, char);
+void send_hit(int, int[], int);
 
 char receive_char(int);
+int receive_hits(int, int*);
 
 #endif

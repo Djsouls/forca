@@ -39,6 +39,41 @@ void make_send_letter_message(char* msg_buffer, char letter) {
     make_message(msg_buffer, msg);
 }
 
+void make_send_hit_message(char* msg_buffer, int hits[], int n) {
+    char* payload[MSG_MAX_SIZE];
+    int size;
+
+    if (n == 0) {
+        payload[0] = '#';
+        size = 1;
+    } else {
+        int j = 0;
+        for (int i = 0; i < n; i++) {
+            payload[j++] = hits[i];
+
+            if (i != n - 1) {
+                payload[j++] = ',';
+            } else {
+                payload[j++] = '#';
+            }
+        }
+
+        size = 2 * n; // Um pra cada hit, um pra cada virgula
+    }
+
+    for(int i = 0; i < size; i++) {
+        printf("mk %d\n", payload[i]);
+    }
+
+    message msg = {
+        .msg_type = SEND_HIT,
+        .payload_size = size,
+        .payload = payload
+    };
+
+    make_message(msg_buffer, msg);
+}
+
 void make_message(char* msg_buffer, message msg) {
     add_msg_type(msg_buffer, msg.msg_type);
     add_msg_payload_size(msg_buffer, msg.payload_size);

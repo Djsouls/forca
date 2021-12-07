@@ -13,6 +13,7 @@
 #define HELLO_MSG 0
 #define SEND_WORD_SIZE 1
 #define SEND_LETTER 2
+#define SEND_HIT 3
 
 typedef struct message {
     uint8_t msg_type;
@@ -27,6 +28,7 @@ void make_message(char*, message);
 /* Review */
 void make_send_word_size_message(char*, int);
 void make_send_letter_message(char*, char);
+void make_send_hit_message(char*, int[], int);
 /**/
 
 void add_msg_type(char*, uint8_t);
