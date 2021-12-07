@@ -1,26 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-
-#include <sys/socket.h>
-#include <arpa/inet.h>
-#include <unistd.h>
-#include <string.h>
-
 #include "client.h"
-#include "../util.h"
-
-#define HOST "127.0.0.1"
-
-void config_addr(struct sockaddr_in*);
-
-void play_hangman(int);
-
-void init_word(char*, int);
-void show_word(char*, int);
-void update_word(char*, char, int*, int);
-
-bool word_completed(char*, int);
 
 void main()
 {
@@ -50,19 +28,17 @@ void main()
 }
 
 void play_hangman(int server_fd) {
-    int lives = 5;
-    char word[32];
+    int lives = N_LIVES;
+    char word[MAX_WORD_SIZE];
 
-    char server_buffer[BUFFER_SIZE] = {0};
+    int word_size = get_word_size(server_fd);
 
-    read(server_fd, server_buffer, BUFFER_SIZE);
-
-    int word_size = server_buffer[START_PAYLOAD_INDEX];
     printf("Tamanho da palavra: %i\n", word_size);
 
     init_word(word, word_size);
     show_word(word, word_size);
 
+    int hits[MAX_WORD_SIZE];
     char letter;
     while(lives > 0) {
         printf("\nLetra ");
@@ -70,7 +46,6 @@ void play_hangman(int server_fd) {
 
         send_letter(server_fd, letter);
 
-        int hits[32];
         int hit_count = receive_hits(server_fd, hits);
 
         if (hit_count == 0) {
@@ -82,7 +57,7 @@ void play_hangman(int server_fd) {
                 break;
             }
         }
-        
+
         update_word(word, letter, hits, hit_count);
         show_word(word, word_size);
 
