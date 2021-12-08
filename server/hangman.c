@@ -8,7 +8,7 @@ void play_hangman(int client_fd)
     char current_word[word_size];
     init_word(current_word, word_size);
 
-    int lives = 5;
+    int lives = N_LIVES;
 
     printf("Playing hangman!\n");
     printf("Word: %s\n", word);
@@ -47,6 +47,8 @@ char* choose_word() {
         "odorico",
         "sabado"
     };
+
+    srand(time(NULL));
 
     return words[rand() % n_words];
 }

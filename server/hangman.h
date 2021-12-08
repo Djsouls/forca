@@ -7,14 +7,14 @@
 
 #include <string.h>
 
+#include <time.h>
+
 #include <unistd.h>
 
 #include <sys/socket.h>
 
 #include "../request/request.h"
 #include "util.h"
-
-#define MAX_WORD_SIZE 32
 
 typedef struct hangman {
     char word[MAX_WORD_SIZE];
